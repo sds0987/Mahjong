@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: the-mahjong-club
+    runtime: node
+    region: singapore
+    plan: 0.5c-512mb
+    branch: main
+    numInstances: 1
+    buildCommand: npm ci && npm run build && npm run typecheck:server
+    startCommand: npm start
+    healthCheckPath: /api/ready
+    maxShutdownDelaySeconds: 30
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: 22.14.0
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: mahjong-data
+      mountPath: /var/data
+      sizeGB: 1

@@ -81,7 +81,7 @@ export function HomePage() {
               <p className="mt-6 max-w-xl text-base leading-7 text-ivory/68 sm:text-lg sm:leading-8">Learn the 16-tile game, invite your friends, and play live online.</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Button onClick={openPractice} withArrow className="sm:px-6">Play a Practice Game</Button>
-                <Button variant="secondary" onClick={() => navigate('/lan')} className="sm:px-6"><Wifi size={17} /> Play on Local Network</Button>
+                <Button variant="secondary" onClick={() => navigate('/lan')} className="sm:px-6"><Wifi size={17} /> Play with Friends</Button>
                 <Button variant="secondary" onClick={() => document.querySelector('#how-it-works')?.scrollIntoView()} className="sm:px-6">Learn in 5 Minutes <ArrowDown size={17} /></Button>
               </div>
               <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-xs font-bold text-ivory/55">

@@ -1,0 +1,21 @@
+{
+  "name": "The Mahjong Club",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "postCreateCommand": "npm ci",
+  "forwardPorts": [5173, 3000],
+  "portsAttributes": {
+    "5173": {
+      "label": "Vite client",
+      "onAutoForward": "openPreview"
+    },
+    "3000": {
+      "label": "Mahjong game server",
+      "onAutoForward": "silent"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "bradlc.vscode-tailwindcss", "redhat.vscode-yaml"]
+    }
+  }
+}

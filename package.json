@@ -3,23 +3,30 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "dev": "node ./node_modules/concurrently/dist/bin/index.js -k -n SERVER,CLIENT -c green,cyan \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "node ./node_modules/vite/bin/vite.js --host 0.0.0.0",
     "dev:server": "node ./node_modules/tsx/dist/cli.mjs watch server/index.ts",
     "build": "node ./node_modules/typescript/bin/tsc -b && node ./node_modules/vite/bin/vite.js build",
     "typecheck:server": "node ./node_modules/typescript/bin/tsc -p server/tsconfig.json --noEmit",
+    "start": "node ./node_modules/tsx/dist/cli.mjs server/index.ts",
     "lan:server": "node ./node_modules/tsx/dist/cli.mjs server/index.ts",
     "lan": "npm run build && npm run lan:server",
     "lint": "node ./node_modules/oxlint/bin/oxlint",
     "test": "node ./node_modules/vitest/vitest.mjs run",
     "test:watch": "node ./node_modules/vitest/vitest.mjs",
-    "preview": "node ./node_modules/vite/bin/vite.js preview"
+    "preview": "node ./node_modules/vite/bin/vite.js preview",
+    "validate": "npm run build && npm run typecheck:server && npm test && npm run lint"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
     "framer-motion": "^14.4.0",
+    "helmet": "^8.3.0",
     "lucide-react": "^1.60.0",
     "qrcode": "^1.5.4",
     "react": "^19.3.1",
@@ -28,6 +35,7 @@
     "socket.io": "^4.8.4",
     "socket.io-client": "^4.8.4",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
     "zod": "^4.6.7"
   },
   "devDependencies": {
@@ -39,7 +47,6 @@
     "@vitejs/plugin-react": "^6.1.2",
     "concurrently": "^10.0.6",
     "oxlint": "^1.88.0",
-    "tsx": "^4.23.15",
     "typescript": "~6.0.3",
     "vite": "^8.3.4",
     "vitest": "^5.0.5"

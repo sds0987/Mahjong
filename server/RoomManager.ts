@@ -19,6 +19,8 @@ const id=()=>randomBytes(12).toString('base64url')
 export class RoomManager {
   rooms=new Map<string,LanRoom>()
   constructor(private lanUrls:string[]=[]){ }
+  urls(){return [...this.lanUrls]}
+  setUrls(urls:string[]){this.lanUrls=[...urls];for(const room of this.rooms.values())room.lanUrls=[...urls]}
   private code(){for(let attempt=0;attempt<100;attempt++){let value='';for(let i=0;i<6;i++)value+=CODE_CHARS[Math.floor(Math.random()*CODE_CHARS.length)];if(!this.rooms.has(value))return value}throw new Error('Unable to allocate room code')}
   create(input:{displayName:string;roomName:string;turnDuration:number;matchHands:number;rulesPreset:'Taiwanese Practice v1';fillBots:boolean;botReplacement:boolean;password?:string}){
     const now=Date.now(),roomId=this.code(),playerId=id(),playerToken=token(); const seat:RoomSeat={playerId,token:playerToken,displayName:input.displayName,seatIndex:0,ready:false,connection:'connected',isBot:false,lastSeen:now}
@@ -60,5 +62,5 @@ export class RoomManager {
     return {matchId:game.id,handId:`${game.id}-${game.handNumber}`,stateVersion:room.stateVersion,lastEventSequence:room.eventSequence,serverTimestamp:Date.now(),phase:game.phase,players:game.players.map((player,index)=>{const seat=room.seats[index]!;return {playerId:seat.playerId,displayName:seat.displayName,seatIndex:index,seatWind:player.seat,score:player.score,isHost:seat.playerId===room.hostPlayerId,isBot:seat.isBot,ready:seat.ready,connection:seat.connection,concealedCount:player.hand.length,...(index===viewer.seatIndex?{hand:player.hand}:{}),flowers:player.flowers,melds:player.melds,discards:player.discards,latestAction:[...room.events].reverse().find((event)=>event.message.startsWith(player.name))?.message}}),dealerIndex:game.dealerIndex,currentPlayerIndex:game.currentPlayerIndex,roundWind:game.roundWind,handNumber:game.handNumber,completedHands:game.completedHands,wallCount:game.wall.length,latestDiscard:game.latestDiscard,lastDrawnTileId:game.currentPlayerIndex===viewer.seatIndex?game.lastDrawnTileId:undefined,publicDiscards:buildPublicDiscards(game.history,game.players,game.result,game.latestDiscard),legalActions:legal,result:game.result,events:room.events.slice(-40),timer:room.timer}
   }
   exportRooms(){return [...this.rooms.values()]}
-  importRooms(rooms:LanRoom[]){for(const room of rooms){room.gameHistoryCursor??=room.game?.history.length??0;room.lanUrls=this.lanUrls;this.rooms.set(room.roomId,room)}}
+  importRooms(rooms:LanRoom[]){for(const room of rooms){room.gameHistoryCursor??=room.game?.history.length??0;room.lanUrls=[...this.lanUrls];this.rooms.set(room.roomId,room)}}
 }

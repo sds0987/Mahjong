@@ -1,6 +1,51 @@
 # The Mahjong Club
 
-A responsive React + TypeScript implementation of Taiwanese 16-tile Mahjong. It includes the original offline practice game and a server-authoritative four-player Local Network mode powered by Node.js, Express, Socket.IO, Zod, and the same rules engine.
+A responsive React + TypeScript implementation of Taiwanese 16-tile Mahjong. It includes offline practice and a server-authoritative four-player online/local mode powered by Node.js, Express, Socket.IO, Zod, and the same rules engine.
+
+## Production deployment on Render
+
+The repository includes a production Blueprint in `render.yaml`. It deploys one Node web service in Singapore, serves the Vite build and Socket.IO from the same HTTPS origin, performs readiness checks, and mounts a persistent disk at `/var/data` for room and profile state.
+
+1. Sign in to Render and choose **New → Blueprint**.
+2. Connect `https://github.com/sds0987/Mahjong` and select the `main` branch.
+3. Review the Blueprint resources and create the service.
+4. Wait for `/api/ready` to report `{"ready":true}`.
+5. Open the generated `onrender.com` URL, create a room, and scan its QR code from a second device.
+
+Render automatically supplies `RENDER_EXTERNAL_URL`; the server uses it for invite links and QR codes. For a custom domain, set both of these environment variables in Render:
+
+```text
+PUBLIC_BASE_URL=https://mahjong.example.com
+ALLOWED_ORIGINS=https://mahjong.example.com
+```
+
+Important production constraints:
+
+- Keep the service at exactly one instance. Active rooms currently live in process memory, and the attached disk also prevents horizontal scaling.
+- Do not remove the persistent disk or change `DATA_DIR=/var/data`; otherwise profiles and restored rooms will not survive a redeploy.
+- HTTPS and secure WebSocket termination are handled by Render.
+- Deployments receive `SIGTERM`; the server stops accepting ready traffic, saves current room state, and closes connections gracefully.
+- `/api/health` is the liveness endpoint. `/api/ready` is the deployment readiness endpoint.
+
+### Production smoke test
+
+After every production deployment:
+
+1. Confirm `/api/health` returns `ok: true` and `environment: production`.
+2. Create a password-protected room and verify its QR code uses `https://`.
+3. Join from a phone on mobile data, not only the same Wi-Fi.
+4. Start a four-seat game, discard a tile, refresh one player, and confirm reconnection.
+5. Complete or leave the room and verify there are no errors in the Render logs.
+
+## Browser-based development with GitHub Codespaces
+
+Open the repository on GitHub and select **Code → Codespaces → Create codespace on main**. The included `.devcontainer/devcontainer.json` installs dependencies and forwards ports `5173` and `3000`. Run:
+
+```bash
+npm run dev
+```
+
+GitHub opens the Vite client preview, and Vite proxies API and Socket.IO traffic to the game server.
 
 ## Start a Local Network game on Windows
 
@@ -67,6 +112,12 @@ npm test
 npm run build
 npm run typecheck:server
 npm run lint
+```
+
+Or run the same checks in deployment order:
+
+```powershell
+npm run validate
 ```
 
 The tests cover the core rules engine, privacy-safe player projections, identity validation, command idempotency, and a real four-client Socket.IO room that creates, joins, readies, starts, and rejects a fifth player.
