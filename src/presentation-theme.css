@@ -1,0 +1,173 @@
+/* Optional Mahjong Club presentation theme.
+   Enabled by .mj-theme on the application wrapper. The gameplay routes do not
+   receive that wrapper, keeping Mumbai Monsoon and Jaipur Courtyard isolated. */
+:root {
+  --mj-bg: #050c0a;
+  --mj-bg-charcoal: #080a09;
+  --mj-surface: #0b251b;
+  --mj-surface-raised: #102b23;
+  --mj-surface-input: #071710;
+  --mj-text: #ddf8eb;
+  --mj-text-secondary: #bbd7c9;
+  --mj-text-muted: #accebf;
+  --mj-primary: #00c879;
+  --mj-primary-hover: #32d994;
+  --mj-primary-soft: #66e0aa;
+  --mj-gold: #e5c77e;
+  --mj-ivory: #fff8e7;
+  --mj-danger: #ff9c9c;
+  --mj-border: #315646;
+  --mj-border-highlight: #527a69;
+  --mj-radius: 16px;
+  --mj-shadow: 0 20px 56px rgb(0 0 0 / 32%);
+  --mj-font: "Manrope", "Noto Sans Devanagari", system-ui, sans-serif;
+}
+
+.mj-theme {
+  min-height: 100dvh;
+  color-scheme: dark;
+  background: var(--mj-bg);
+  color: var(--mj-text);
+  font-family: var(--mj-font);
+  line-height: 1.6;
+}
+.mj-theme *, .mj-theme *::before, .mj-theme *::after { box-sizing: border-box; }
+.mj-theme :is(button, input, select, textarea) { font: inherit; }
+.mj-theme :is(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--mj-gold);
+  outline-offset: 4px;
+}
+.mj-theme ::selection { background: var(--mj-primary); color: var(--mj-bg); }
+
+.mj-theme .mj-home,
+.mj-theme .mj-app-shell { min-height: 100dvh; background: var(--mj-bg); color: var(--mj-text); }
+.mj-theme .mj-app-main {
+  min-height: calc(100dvh - 72px);
+  background:
+    radial-gradient(ellipse at 92% 4%, rgb(0 200 121 / 9%), transparent 35%),
+    radial-gradient(ellipse at 4% 92%, rgb(229 199 126 / 4%), transparent 32%),
+    var(--mj-bg);
+}
+.mj-theme :is(.mj-site-header, .mj-app-header, .mj-site-menu, .mj-mobile-nav) {
+  border-color: var(--mj-border);
+  background: rgb(5 12 10 / 94%);
+  color: var(--mj-text);
+  box-shadow: 0 12px 34px rgb(0 0 0 / 18%);
+}
+.mj-theme .mj-footer { border-color: var(--mj-border); background: var(--mj-bg-charcoal); }
+.mj-theme .mj-home-hero {
+  background:
+    radial-gradient(ellipse at 85% 20%, rgb(0 200 121 / 14%), transparent 55%),
+    radial-gradient(ellipse at 10% 100%, rgb(229 199 126 / 5%), transparent 40%),
+    var(--mj-bg);
+}
+
+.mj-theme .mj-hero {
+  padding: clamp(32px, 7vw, 100px) clamp(20px, 5vw, 72px);
+  background:
+    radial-gradient(ellipse at 85% 20%, rgb(0 200 121 / 14%), transparent 55%),
+    radial-gradient(ellipse at 10% 100%, rgb(229 199 126 / 5%), transparent 40%),
+    var(--mj-bg);
+}
+.mj-theme .mj-title {
+  margin: 0;
+  max-width: 16ch;
+  color: var(--mj-text);
+  font-size: clamp(36px, 5.5vw, 76px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.mj-theme .mj-section-title { color: var(--mj-text); text-wrap: balance; }
+.mj-theme .mj-eyebrow {
+  color: var(--mj-gold);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.mj-theme .mj-description { max-width: 58ch; color: var(--mj-text-secondary); font-size: clamp(16px, 1.5vw, 21px); }
+.mj-theme .mj-muted { color: var(--mj-text-muted); }
+.mj-theme .mj-accent { color: var(--mj-primary-soft); }
+
+.mj-theme .mj-card {
+  border: 1px solid var(--mj-border);
+  border-radius: var(--mj-radius);
+  background: var(--mj-surface);
+  box-shadow: var(--mj-shadow);
+}
+.mj-theme .mj-card--glass { background: rgb(16 43 35 / 92%); backdrop-filter: blur(16px); }
+
+.mj-theme .mj-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--mj-primary);
+  padding: 11px 22px;
+  color: var(--mj-bg);
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+.mj-theme .mj-button:hover:not(:disabled) { background: var(--mj-primary-hover); transform: translateY(-1px); }
+.mj-theme .mj-button--secondary {
+  border-color: var(--mj-border-highlight);
+  background: var(--mj-surface-raised);
+  color: var(--mj-text);
+}
+.mj-theme .mj-button--secondary:hover:not(:disabled) { border-color: var(--mj-primary-soft); background: #184334; }
+.mj-theme .mj-button--ghost { border-color: transparent; background: transparent; color: var(--mj-text-secondary); }
+.mj-theme .mj-button--ghost:hover:not(:disabled) { background: rgb(102 224 170 / 8%); color: var(--mj-primary-soft); }
+.mj-theme .mj-button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+.mj-theme :is(.mj-input, input:not([type='checkbox']):not([type='radio']), select, textarea) {
+  min-height: 44px;
+  border: 1px solid var(--mj-border-highlight);
+  border-radius: 12px;
+  background: var(--mj-surface-input);
+  padding: 12px 14px;
+  color: var(--mj-text);
+}
+.mj-theme :is(input, textarea)::placeholder { color: var(--mj-text-muted); opacity: .72; }
+.mj-theme :is(.mj-input, input, select, textarea)[aria-invalid='true'] { border-color: var(--mj-danger); }
+.mj-theme input[type='checkbox'], .mj-theme input[type='radio'] { accent-color: var(--mj-primary); }
+.mj-theme option { background: var(--mj-surface-input); color: var(--mj-text); }
+
+.mj-theme .mj-link { color: var(--mj-primary-soft); text-underline-offset: 4px; }
+.mj-theme .mj-divider { border: 0; border-top: 1px solid var(--mj-border); }
+.mj-theme .mj-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.mj-theme .mj-table :is(th, td) { border-bottom: 1px solid var(--mj-border); padding: 14px 16px; text-align: left; }
+.mj-theme .mj-table th { background: var(--mj-surface); color: var(--mj-text-secondary); }
+.mj-theme .mj-tile {
+  border: 1px solid #cfc5ae;
+  border-radius: 9px;
+  background: linear-gradient(145deg, #fffdf4, var(--mj-ivory) 67%, #e7dcc4);
+  box-shadow: inset 1px 1px 0 rgb(255 255 255 / 90%), 0 4px 0 #bcb29d, 0 8px 16px rgb(0 0 0 / 25%);
+  color: #183e35;
+}
+
+/* Existing utility colours are remapped only while the optional wrapper is active. */
+.mj-theme .bg-midnight { background-color: var(--mj-bg); }
+.mj-theme .bg-peacock { background-color: var(--mj-surface-raised); }
+.mj-theme .text-marigold { color: var(--mj-gold); }
+.mj-theme .text-emerald { color: var(--mj-primary-soft); }
+.mj-theme .bg-soft-white { background-color: var(--mj-bg-charcoal); color: var(--mj-text); }
+.mj-theme .bg-soft-white .bg-white { border-color: var(--mj-border); background: var(--mj-surface); }
+.mj-theme .bg-soft-white :is(.text-midnight, .text-charcoal) { color: var(--mj-text); }
+.mj-theme .bg-soft-white [class*='text-charcoal/'] { color: var(--mj-text-secondary); }
+.mj-theme [role='dialog']:not(.board-mumbai *):not(.board-jaipur *) {
+  border-color: var(--mj-border-highlight);
+  background: var(--mj-surface-raised);
+  color: var(--mj-text);
+}
+.mj-theme [role='dialog'] :is(h1, h2, h3, label) { color: var(--mj-text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mj-theme .mj-button { transition: none; }
+}

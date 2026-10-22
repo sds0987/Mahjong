@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { ToastProvider } from './components/ui/Toast'
 import { ScrollToTop } from './components/layout/ScrollToTop'
 import { AppProvider } from './context/AppContext'
@@ -18,13 +18,25 @@ import { LanRoomPage } from './pages/LanRoomPage'
 import { LanGamePage } from './pages/LanGamePage'
 import { ProfileProvider } from './profile/ProfileContext'
 import { MatchResultsPage } from './pages/MatchResultsPage'
+import { useApp } from './context/AppContext'
 
 export default function App() {
   return (
     <AppProvider><ProfileProvider><LanProvider>
       <ToastProvider><ErrorBoundary>
-        <ScrollToTop />
-        <Routes>
+        <ThemeFrame />
+      </ErrorBoundary></ToastProvider>
+    </LanProvider></ProfileProvider></AppProvider>
+  )
+}
+
+function ThemeFrame() {
+  const { presentationTheme } = useApp()
+  const { pathname } = useLocation()
+  const isGameplayRoute = pathname === '/practice' || pathname.startsWith('/practice/') || pathname.startsWith('/game/') || pathname.startsWith('/lan/game/')
+  return <div className={presentationTheme && !isGameplayRoute ? 'mj-theme' : undefined} data-presentation-theme={presentationTheme && !isGameplayRoute ? 'club' : 'classic'}>
+    <ScrollToTop />
+    <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/lobby" element={<LobbyPage />} />
           <Route path="/room/:roomCode" element={<RoomPage />} />
@@ -43,8 +55,6 @@ export default function App() {
           <Route path="/lan/room/:roomCode" element={<LanRoomPage />} />
           <Route path="/lan/game/:roomCode" element={<LanGamePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </ErrorBoundary></ToastProvider>
-    </LanProvider></ProfileProvider></AppProvider>
-  )
+    </Routes>
+  </div>
 }

@@ -66,10 +66,10 @@ export function HomePage() {
   const openPractice = () => navigate('/practice')
 
   return (
-    <div className="min-h-screen overflow-hidden bg-midnight text-ivory">
+    <div className="mj-home min-h-screen overflow-hidden bg-midnight text-ivory">
       <Header onPlay={openPractice} />
       <main>
-        <section className="jaali-pattern relative border-b border-ivory/10">
+        <section className="mj-home-hero jaali-pattern relative border-b border-ivory/10">
           <div className="pointer-events-none absolute left-[-15%] top-[-20%] h-[500px] w-[500px] rounded-full bg-peacock/30 blur-[130px]" />
           <div className="pointer-events-none absolute bottom-[-30%] right-[-10%] h-[480px] w-[480px] rounded-full bg-terracotta/15 blur-[140px]" />
           <div className="relative mx-auto grid min-h-[calc(100vh-80px)] max-w-7xl items-center gap-14 px-5 py-16 sm:px-8 lg:grid-cols-[.92fr_1.08fr] lg:py-20">
@@ -77,8 +77,8 @@ export function HomePage() {
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-marigold/30 bg-marigold/8 px-3 py-2 text-xs font-extrabold uppercase tracking-[.16em] text-marigold">
                 <Sparkles size={14} aria-hidden="true" /> 16-tile Taiwanese Mahjong
               </div>
-              <h1 className="max-w-2xl text-[clamp(2.55rem,5vw,4.65rem)] font-extrabold leading-[1.03] tracking-[-.045em] text-ivory">The Mahjong Club, <span className="text-marigold">made social</span> for India</h1>
-              <p className="mt-6 max-w-xl text-base leading-7 text-ivory/68 sm:text-lg sm:leading-8">Learn the 16-tile game, invite your friends, and play live online.</p>
+              <h1 className="mj-title max-w-2xl text-[clamp(2.55rem,5vw,4.65rem)] font-extrabold leading-[1.03] tracking-[-.045em] text-ivory">The Mahjong Club, <span className="mj-accent text-marigold">made social</span> for India</h1>
+              <p className="mj-description mt-6 max-w-xl text-base leading-7 text-ivory/68 sm:text-lg sm:leading-8">Learn the 16-tile game, invite your friends, and play live online.</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Button onClick={openPractice} withArrow className="sm:px-6">Play a Practice Game</Button>
                 <Button variant="secondary" onClick={() => navigate('/lan')} className="sm:px-6"><Wifi size={17} /> Play with Friends</Button>

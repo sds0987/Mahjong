@@ -3,7 +3,7 @@ import { Logo } from './Logo'
 
 export function Footer() {
   return (
-    <footer className="border-t border-ivory/10 bg-[#0d1222]">
+    <footer className="mj-footer border-t border-ivory/10 bg-[#0d1222]">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <Logo />

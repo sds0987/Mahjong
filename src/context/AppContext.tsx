@@ -19,6 +19,8 @@ interface AppContextValue {
   setReducedMotion: (value: boolean) => void
   highContrast: boolean
   setHighContrast: (value: boolean) => void
+  presentationTheme: boolean
+  setPresentationTheme: (value: boolean) => void
 }
 
 const initialSettings: RoomSettings = {
@@ -35,13 +37,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [sound, setSound] = useState(true)
   const [reducedMotion, setReducedMotion] = useState(false)
   const [highContrast, setHighContrast] = useState(false)
+  const [presentationTheme, setPresentationThemeState] = useState(() => typeof window !== 'undefined' && window.localStorage.getItem('mahjong-presentation-theme') === 'true')
+  const setPresentationTheme = (value: boolean) => { setPresentationThemeState(value); window.localStorage.setItem('mahjong-presentation-theme', String(value)) }
 
   const room: Room = { code: 'IND-482', hostId: currentPlayer.id, rules: 'Taiwanese 16-Tile', settings, players: roomPlayers }
   const value = {
     player: currentPlayer, room, updateRoomSettings: setSettings,
     toggleReady: () => setRoomPlayers((items) => items.map((p) => p?.id === currentPlayer.id ? { ...p, ready: !p.ready } : p)),
     fillSeats: () => setRoomPlayers(players.map((p) => ({ ...p, ready: true }))),
-    theme, setTheme, sound, setSound, reducedMotion, setReducedMotion, highContrast, setHighContrast,
+    theme, setTheme, sound, setSound, reducedMotion, setReducedMotion, highContrast, setHighContrast, presentationTheme, setPresentationTheme,
   }
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>

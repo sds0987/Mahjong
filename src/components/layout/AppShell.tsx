@@ -15,8 +15,8 @@ const nav = [
 
 export function AppShell({ children, fullBleed = false }: { children: ReactNode; fullBleed?: boolean }) {
   const { player } = useApp()
-  return <div className="min-h-screen bg-midnight text-ivory">
-    <header className="sticky top-0 z-40 border-b border-ivory/10 bg-midnight/92 backdrop-blur-xl">
+  return <div className="mj-app-shell min-h-screen bg-midnight text-ivory">
+    <header className="mj-app-header sticky top-0 z-40 border-b border-ivory/10 bg-midnight/92 backdrop-blur-xl">
       <div className="mx-auto flex h-18 max-w-[1500px] items-center justify-between px-4 sm:px-6">
         <Logo />
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Application navigation">
@@ -28,8 +28,8 @@ export function AppShell({ children, fullBleed = false }: { children: ReactNode;
         </div>
       </div>
     </header>
-    <main className={`${fullBleed ? '' : 'mx-auto max-w-[1500px] px-4 py-7 sm:px-6 sm:py-10'} pb-24 lg:pb-10`}>{children}</main>
-    <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t border-ivory/12 bg-[#0d1222]/96 px-1 pb-[max(.4rem,env(safe-area-inset-bottom))] pt-1.5 backdrop-blur-xl lg:hidden" aria-label="Mobile navigation">
+    <main className={`mj-app-main ${fullBleed ? '' : 'mx-auto max-w-[1500px] px-4 py-7 sm:px-6 sm:py-10'} pb-24 lg:pb-10`}>{children}</main>
+    <nav className="mj-mobile-nav fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t border-ivory/12 bg-[#0d1222]/96 px-1 pb-[max(.4rem,env(safe-area-inset-bottom))] pt-1.5 backdrop-blur-xl lg:hidden" aria-label="Mobile navigation">
       {nav.map(({ to, label, icon: Icon }) => <NavLink key={to} to={to} className={({ isActive }) => `flex min-h-14 flex-col items-center justify-center gap-1 rounded-lg text-[10px] font-bold ${isActive ? 'text-marigold' : 'text-ivory/50'}`}><Icon size={19} /><span>{label}</span></NavLink>)}
     </nav>
   </div>

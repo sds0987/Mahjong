@@ -16,7 +16,7 @@ export function Button({ children, variant = 'primary', withArrow = false, class
 
   return (
     <button
-      className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border px-5 py-3 text-sm font-extrabold transition-colors disabled:cursor-not-allowed disabled:border-ivory/15 disabled:bg-ivory/8 disabled:text-ivory/35 disabled:opacity-100 ${styles[variant]} ${className}`}
+      className={`mj-button mj-button--${variant} inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border px-5 py-3 text-sm font-extrabold transition-colors disabled:cursor-not-allowed disabled:border-ivory/15 disabled:bg-ivory/8 disabled:text-ivory/35 disabled:opacity-100 ${styles[variant]} ${className}`}
       {...props}
     >
       {children}

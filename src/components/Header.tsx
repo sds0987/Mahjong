@@ -17,7 +17,7 @@ export function Header({ onPlay }: { onPlay: () => void }) {
   const close = () => setOpen(false)
 
   return (
-    <header className="relative z-40 border-b border-ivory/10 bg-midnight/90 backdrop-blur-xl">
+    <header className="mj-site-header relative z-40 border-b border-ivory/10 bg-midnight/90 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
         <Logo />
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
@@ -42,7 +42,7 @@ export function Header({ onPlay }: { onPlay: () => void }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-ivory/10 bg-midnight lg:hidden"
+            className="mj-site-menu overflow-hidden border-t border-ivory/10 bg-midnight lg:hidden"
           >
             <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-5" aria-label="Mobile navigation">
               {links.map(({ label, href, route }) => route ? <Link key={label} to={href} onClick={close} className="rounded-lg px-3 py-3 text-sm font-bold text-ivory/85 hover:bg-ivory/5">{label}</Link> : <a key={label} href={href} onClick={close} className="rounded-lg px-3 py-3 text-sm font-bold text-ivory/85 hover:bg-ivory/5">{label}</a>)}
