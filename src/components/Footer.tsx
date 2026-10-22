@@ -1,7 +1,9 @@
-import { Camera, Mail } from 'lucide-react'
+import { Camera, Mail, Palette } from 'lucide-react'
 import { Logo } from './Logo'
+import { useApp } from '../context/AppContext'
 
 export function Footer() {
+  const { presentationTheme, setPresentationTheme } = useApp()
   return (
     <footer className="mj-footer border-t border-ivory/10 bg-[#0d1222]">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
@@ -22,6 +24,7 @@ export function Footer() {
           <div className="mt-4 flex gap-3">
             <a href="mailto:hello@themahjongclub.in" aria-label="Email The Mahjong Club" className="grid h-11 w-11 place-items-center rounded-xl border border-ivory/15 text-ivory/70 hover:border-marigold/50 hover:text-marigold"><Mail size={18} /></a>
             <a href="#community" aria-label="The Mahjong Club community photos" className="grid h-11 w-11 place-items-center rounded-xl border border-ivory/15 text-ivory/70 hover:border-marigold/50 hover:text-marigold"><Camera size={18} /></a>
+            <button type="button" onClick={() => setPresentationTheme(!presentationTheme)} aria-label={`${presentationTheme ? 'Disable' : 'Enable'} presentation theme`} aria-pressed={presentationTheme} title={`${presentationTheme ? 'Use classic theme' : 'Use presentation theme'}`} className={`mj-theme-toggle relative grid h-11 w-11 place-items-center rounded-xl border transition-colors ${presentationTheme ? 'is-active border-emerald/60 bg-emerald/15 text-emerald' : 'border-ivory/15 text-ivory/70 hover:border-marigold/50 hover:text-marigold'}`}><Palette size={18} /><span className="sr-only">Toggle presentation theme</span></button>
           </div>
         </div>
       </div>

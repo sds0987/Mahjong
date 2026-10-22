@@ -55,6 +55,14 @@
   box-shadow: 0 12px 34px rgb(0 0 0 / 18%);
 }
 .mj-theme .mj-footer { border-color: var(--mj-border); background: var(--mj-bg-charcoal); }
+.mj-theme .mj-theme-toggle { border-color: var(--mj-border-highlight); color: var(--mj-text-secondary); }
+.mj-theme .mj-theme-toggle:hover { border-color: var(--mj-gold); color: var(--mj-gold); }
+.mj-theme .mj-theme-toggle.is-active {
+  border-color: var(--mj-primary-soft);
+  background: rgb(0 200 121 / 15%);
+  color: var(--mj-primary-soft);
+  box-shadow: 0 0 0 3px rgb(0 200 121 / 8%);
+}
 .mj-theme .mj-home-hero {
   background:
     radial-gradient(ellipse at 85% 20%, rgb(0 200 121 / 14%), transparent 55%),
