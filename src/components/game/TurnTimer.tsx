@@ -1,0 +1,2 @@
+import { Timer } from 'lucide-react'
+export function TurnTimer({ seconds = 34, active = false }: { seconds?: number; active?: boolean }) { return <span className={`tabular inline-flex items-center gap-1 rounded-full px-2 py-1 text-[10px] font-extrabold ${active ? 'bg-marigold text-midnight' : 'bg-ivory/10 text-ivory/55'}`} aria-label={`${seconds} seconds remaining`}><Timer size={11} />0:{String(seconds).padStart(2,'0')}</span> }

@@ -97,4 +97,3 @@ Profile routes:
 ## Multiplayer architecture
 
 The Node process owns room membership, wall order, hands, turns, claims, scoring, timers, reconnection state, and bot takeover. Every inbound event is schema-validated and checked against the authenticated room token. Each socket receives a per-player projection: its own concealed hand plus only public counts and tiles for opponents. Claim responses remain private until the server resolves priority. The browser stores only the room, player ID, and reconnect token.
-

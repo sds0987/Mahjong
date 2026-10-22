@@ -1,0 +1,21 @@
+import { Sparkles } from 'lucide-react'
+import { useState } from 'react'
+import { DEFAULT_SETTINGS } from '../../game/constants'
+import type { Difficulty, GameSettings, GameSpeed, GameState } from '../../game/types'
+import { Button } from '../Button'
+import { BOT_RATINGS } from '../../profile/config'
+
+const themes=['Kolkata Royal','Jaipur Courtyard','Mumbai Monsoon','Kerala House','Chennai Club']
+
+export function PracticeSetup({saved,onStart,onResume}:{saved:GameState|null;onStart:(settings:GameSettings)=>void;onResume:()=>void}) {
+  const [settings,setSettings]=useState(DEFAULT_SETTINGS); const set=<K extends keyof GameSettings>(key:K,value:GameSettings[K])=>setSettings((current)=>({...current,[key]:value}))
+  return <div className="min-h-screen bg-midnight p-4 text-ivory sm:p-8"><div className="jaali-pattern mx-auto max-w-3xl rounded-[30px] border border-marigold/25 bg-[#172038] p-6 shadow-2xl sm:p-9"><p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[.18em] text-marigold"><Sparkles size={15}/>Practice table</p><h1 className="mt-3 text-3xl font-extrabold">Choose your seat</h1><p className="mt-2 text-sm leading-6 text-ivory/60">A complete four-hand match against three local computer players. No account required.</p>
+    {saved&&<div className="mt-6 flex flex-col items-start justify-between gap-4 rounded-2xl border border-emerald/30 bg-emerald/10 p-4 sm:flex-row sm:items-center"><div><b>Continue hand {saved.handNumber}</b><p className="mt-1 text-xs text-ivory/55">{saved.players[0].name} · {saved.settings.difficulty} bots · {saved.wall.length} live tiles</p></div><Button onClick={onResume}>Resume saved game</Button></div>}
+    <div className="mt-7 grid gap-5 sm:grid-cols-2"><label className="text-sm font-bold">Display name<input value={settings.displayName} maxLength={20} onChange={(event)=>set('displayName',event.target.value)} className="mt-2 h-12 w-full rounded-xl border border-ivory/15 bg-midnight/60 px-4 text-ivory"/></label><div><Select label="Bot difficulty" value={settings.difficulty} options={['easy','medium','hard']} onChange={(value)=>set('difficulty',value as Difficulty)}/><p className="mt-2 text-xs text-ivory/45">Reference rating: {BOT_RATINGS[settings.difficulty]}. Completed four-hand matches affect Practice Rating, never Competitive Rating.</p></div><Select label="Game speed" value={settings.speed} options={['slow','normal','fast']} onChange={(value)=>set('speed',value as GameSpeed)}/><Select label="Table theme" value={settings.theme} options={themes} onChange={(value)=>set('theme',value)}/></div>
+    <div className="mt-6 grid gap-3 sm:grid-cols-2"><Toggle title="Turn assistance" description="Show legal calls and hints" checked={settings.assistance} onChange={(value)=>set('assistance',value)}/><Toggle title="Double-click discard" description="Optional faster tile control" checked={settings.doubleClickDiscard} onChange={(value)=>set('doubleClickDiscard',value)}/></div>
+    <div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><Button variant="secondary" onClick={()=>onStart(DEFAULT_SETTINGS)}>Quick Start</Button><Button onClick={()=>onStart({...settings,displayName:settings.displayName.trim()||'Player'})} withArrow>Start match</Button></div>
+  </div></div>
+}
+
+function Select({label,value,options,onChange}:{label:string;value:string;options:string[];onChange:(value:string)=>void}) { return <label className="text-sm font-bold">{label}<select value={value} onChange={(event)=>onChange(event.target.value)} className="mt-2 h-12 w-full rounded-xl border border-ivory/15 bg-midnight/60 px-4 capitalize text-ivory">{options.map((option)=><option key={option}>{option}</option>)}</select></label> }
+function Toggle({title,description,checked,onChange}:{title:string;description:string;checked:boolean;onChange:(value:boolean)=>void}) { return <label className="flex cursor-pointer items-center justify-between rounded-xl border border-ivory/12 p-4"><span><b className="block text-sm">{title}</b><span className="text-xs text-ivory/50">{description}</span></span><input type="checkbox" checked={checked} onChange={(event)=>onChange(event.target.checked)} className="h-5 w-5 accent-[#F2A900]"/></label> }

@@ -1,0 +1,2 @@
+import { BookOpen } from 'lucide-react'
+export function RuleBadge({ label = 'Taiwanese 16-Tile', light = false }: { label?: string; light?: boolean }) { return <span className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs font-extrabold ${light ? 'border-charcoal/15 bg-white text-peacock' : 'border-marigold/25 bg-marigold/10 text-marigold'}`}><BookOpen size={14} />{label}</span> }
