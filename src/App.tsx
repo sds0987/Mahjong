@@ -19,6 +19,7 @@ import { LanGamePage } from './pages/LanGamePage'
 import { ProfileProvider } from './profile/ProfileContext'
 import { MatchResultsPage } from './pages/MatchResultsPage'
 import { useApp } from './context/AppContext'
+import { PresentationHomePage } from './pages/PresentationHomePage'
 
 export default function App() {
   return (
@@ -37,7 +38,7 @@ function ThemeFrame() {
   return <div className={presentationTheme && !isGameplayRoute ? 'mj-theme' : undefined} data-presentation-theme={presentationTheme && !isGameplayRoute ? 'club' : 'classic'}>
     <ScrollToTop />
     <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={presentationTheme ? <PresentationHomePage /> : <HomePage />} />
           <Route path="/lobby" element={<LobbyPage />} />
           <Route path="/room/:roomCode" element={<RoomPage />} />
           <Route path="/game/:gameId" element={<GamePage />} />

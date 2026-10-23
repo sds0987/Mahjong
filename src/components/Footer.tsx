@@ -2,7 +2,7 @@ import { Camera, Mail, Palette } from 'lucide-react'
 import { Logo } from './Logo'
 import { useApp } from '../context/AppContext'
 
-export function Footer() {
+export function Footer({ hideTableThemes = false }: { hideTableThemes?: boolean }) {
   const { presentationTheme, setPresentationTheme } = useApp()
   return (
     <footer className="mj-footer border-t border-ivory/10 bg-[#0d1222]">
@@ -15,7 +15,7 @@ export function Footer() {
           <h3 className="text-xs font-extrabold uppercase tracking-[.18em] text-marigold">Clubhouse</h3>
           <div className="mt-4 grid gap-3 text-sm text-ivory/60">
             <a href="#how-it-works" className="hover:text-ivory">How it works</a>
-            <a href="#tables" className="hover:text-ivory">Table themes</a>
+            {!hideTableThemes && <a href="#tables" className="hover:text-ivory">Table themes</a>}
             <a href="#community" className="hover:text-ivory">Community</a>
           </div>
         </div>

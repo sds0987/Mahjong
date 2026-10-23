@@ -55,7 +55,9 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
   --player-tile-width: clamp(64px, 3.9vw, 72px);
   --player-tile-height: calc(var(--player-tile-width) * 1.36);
 }
-.mahjong-tile { position: relative; display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; overflow: visible; border: 1px solid #cfc5ae; border-radius: 9px; background: linear-gradient(145deg,#fffdf4 0%,#fff8e7 67%,#e7dcc4 100%); box-shadow: inset 1px 1px 0 rgba(255,255,255,.9), inset -1px -1px 0 rgba(129,111,76,.12), 0 4px 0 #bcb29d, 0 7px 10px rgba(4,12,10,.3); color:#183e35; transform: translateY(0); transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, opacity .15s ease; }
+.mahjong-tile { --tile-edge:#146a58; --tile-edge-dark:#084437; position:relative; isolation:isolate; display:inline-flex; flex:0 0 auto; align-items:center; justify-content:center; overflow:visible; border:1px solid #d1c5ac; border-radius:9px; background:radial-gradient(circle at 24% 17%,rgba(255,255,255,.95),transparent 25%),linear-gradient(150deg,#fffef8 0%,#fbf4e3 58%,#e3d7bc 100%); box-shadow:inset 1px 1px 0 rgba(255,255,255,.98),inset -1px -1px 0 rgba(105,82,42,.16),0 2px 0 #d7cbae,0 5px 0 var(--tile-edge),0 7px 0 var(--tile-edge-dark),0 10px 15px rgba(2,12,10,.3); color:#183e35; transform:translateY(0); transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease,opacity .15s ease; }
+.mahjong-tile:not(.mahjong-tile--back)::before { content:""; position:absolute; z-index:0; inset:3px; border:1px solid rgba(126,102,58,.09); border-radius:7px; background:linear-gradient(135deg,rgba(255,255,255,.32),transparent 28%,rgba(123,96,48,.035) 82%,rgba(90,63,25,.08)); box-shadow:inset 0 0 7px rgba(121,92,47,.045); pointer-events:none; }
+.mahjong-tile:not(.mahjong-tile--back)::after { content:""; position:absolute; z-index:0; top:4px; right:8px; left:8px; height:1px; border-radius:999px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.92),transparent); pointer-events:none; }
 .mahjong-tile--sm { width: 29px; height: 40px; border-radius: 5px; }
 .mahjong-tile--md { width: 42px; height: 58px; }
 .mahjong-tile--lg { width: 50px; height: 68px; }
@@ -64,23 +66,23 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .mahjong-tile--meld { width: clamp(30px, 2.35vw, 44px); height: clamp(41px, 3.2vw, 60px); }
 .mahjong-tile--flower { width: clamp(28px, 2.1vw, 40px); height: clamp(38px, 2.85vw, 54px); }
 .mahjong-tile--opponent { width: clamp(15px, 1.5vw, 24px); height: clamp(30px, 2.6vw, 42px); border-radius: 4px; box-shadow: 0 2px 0 #043d34, 0 4px 5px rgba(0,0,0,.25); }
-.tile-art { width: 88%; height: 88%; overflow: visible; }
+.tile-art { position:relative; z-index:1; width:84%; height:84%; overflow:visible; filter:drop-shadow(0 .5px 0 rgba(76,55,22,.2)); }
 .mahjong-tile--interactive { cursor:pointer; }
-.mahjong-tile--interactive:hover:not(:disabled) { transform:translateY(-6px); border-color:#f2a900; box-shadow:inset 1px 1px 0 white,0 4px 0 #bcb29d,0 13px 18px rgba(4,12,10,.38); }
-.mahjong-tile--selected { transform:translateY(-12px)!important; border-color:#f2a900; outline:3px solid #f2a900; outline-offset:2px; box-shadow:0 4px 0 #a99c83,0 17px 24px rgba(0,0,0,.4); }
-.tile-selected-mark { position:absolute; top:-10px; right:-8px; display:grid; width:20px; height:20px; place-items:center; border-radius:999px; border:2px solid #12182b; background:#f2a900; color:#12182b; font-size:11px; font-weight:900; }
-.mahjong-tile--drawn { margin-left:clamp(10px,1.2vw,18px); border-color:#f2a900; outline:2px solid rgba(242,169,0,.85); outline-offset:2px; box-shadow:0 4px 0 #a99c83,0 10px 22px rgba(242,169,0,.28); }
+.mahjong-tile--interactive:hover:not(:disabled) { transform:translateY(-6px); border-color:#f2a900; box-shadow:inset 1px 1px 0 white,0 2px 0 #d7cbae,0 5px 0 var(--tile-edge),0 7px 0 var(--tile-edge-dark),0 15px 20px rgba(4,12,10,.4); }
+.mahjong-tile--selected { transform:translateY(-12px)!important; border-color:#f2a900; outline:3px solid #f2a900; outline-offset:2px; box-shadow:0 2px 0 #d7cbae,0 5px 0 var(--tile-edge),0 7px 0 var(--tile-edge-dark),0 18px 25px rgba(0,0,0,.42); }
+.tile-selected-mark { position:absolute; top:-10px; right:-8px; z-index:4; display:grid; width:20px; height:20px; place-items:center; border-radius:999px; border:2px solid #12182b; background:#f2a900; color:#12182b; font-size:11px; font-weight:900; }
+.mahjong-tile--drawn { margin-left:clamp(10px,1.2vw,18px); border-color:#f2a900; outline:2px solid rgba(242,169,0,.85); outline-offset:2px; box-shadow:0 2px 0 #d7cbae,0 5px 0 var(--tile-edge),0 7px 0 var(--tile-edge-dark),0 11px 23px rgba(242,169,0,.25); }
 .tile-drawn-mark { position:absolute; left:50%; top:-13px; z-index:3; transform:translateX(-50%); border-radius:999px; background:#f2a900; padding:2px 6px; color:#12182b; font-size:7px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
 .mahjong-tile--latest { outline:3px solid #f2a900; outline-offset:2px; }
 .mahjong-tile--disabled { cursor:not-allowed; opacity:.7; filter:saturate(.78); }
 .mahjong-tile--contrast { border-color:#000; background:#fff; }
-.mahjong-tile--back { border-color:#0a493f; background:linear-gradient(145deg,#147565,#075b4c); box-shadow:inset 1px 1px 0 rgba(255,255,255,.2),0 2px 0 #043c34,0 4px 7px rgba(0,0,0,.25); }
+.mahjong-tile--back { border-color:#0d5548; background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.14),transparent 35%),linear-gradient(145deg,#16806c,#075b4c 62%,#044135); box-shadow:inset 1px 1px 0 rgba(255,255,255,.24),inset -1px -1px 0 rgba(0,0,0,.22),0 2px 0 #043c34,0 5px 8px rgba(0,0,0,.28); }
 .tile-back-art { width:68%; height:72%; border:1px solid rgba(242,169,0,.55); border-radius:3px; background:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(242,169,0,.18) 3px,rgba(242,169,0,.18) 5px); }
 .mahjong-tile:focus-visible { outline:4px solid #f2a900; outline-offset:4px; }
 .hand-rack { scrollbar-width:thin; scrollbar-color:rgba(242,169,0,.6) transparent; }
 .game-board { height:calc(100dvh - 56px); min-height:0; display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:clamp(112px,17vh,145px) minmax(210px,1fr) clamp(188px,25vh,230px); gap:8px; padding:8px; overflow:hidden; background-color:#075b4c; box-shadow:inset 0 0 100px rgba(0,0,0,.2); }
 .game-board>* { min-width:0; }
-.board-peacock{background-color:#075b4c}.board-jaipur{background-color:#824838}.board-mumbai{background-color:#24405d}.board-chennai{background-color:#693c32}
+.board-peacock{background-color:#075b4c}.board-kolkata{background-color:#173e32}.board-jaipur{background-color:#824838}.board-mumbai{background-color:#24405d}.board-chennai{background-color:#693c32}
 .opponent-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; min-height:0; }
 .opponent-panel { min-width:0; overflow:hidden; border:1px solid rgba(255,248,231,.14); border-radius:14px; background:rgba(11,20,31,.72); padding:8px 10px; box-shadow:0 8px 20px rgba(0,0,0,.14); transition:border-color .2s,box-shadow .2s; }
 .opponent-panel--active { border-color:#f2a900; box-shadow:0 0 0 1px rgba(242,169,0,.25),0 8px 24px rgba(0,0,0,.2); }
@@ -196,12 +198,134 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 }
 @media (max-height:760px) and (min-width:768px){.game-board,.lan-game-board{grid-template-rows:88px minmax(130px,1fr) 260px}.discard-river__viewport{max-height:25vh}.hand-rack{padding-top:16px}}
 
+/* Kolkata Royal: a measured heritage-club table in bottle green, teak and brass. */
+.table-shell--kolkata .game-chrome {
+  position:relative;
+  border-bottom-color:rgba(220,184,100,.42);
+  background:
+    linear-gradient(90deg,rgba(8,28,22,.98),rgba(18,49,38,.97) 48%,rgba(8,25,20,.98)),
+    #0b241b;
+  box-shadow:inset 0 -1px 0 rgba(255,236,185,.08),0 8px 28px rgba(2,13,9,.3);
+}
+.table-shell--kolkata .game-chrome::after { content:""; position:absolute; right:0; bottom:-1px; left:0; height:1px; background:linear-gradient(90deg,transparent,rgba(228,195,110,.78) 18%,rgba(228,195,110,.3) 82%,transparent); }
+.table-shell--kolkata .game-chrome__monogram { border-color:rgba(228,195,110,.62); background:linear-gradient(145deg,#1d654e,#0b3e30); box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 4px 12px rgba(1,12,8,.34); color:#f0cf78; }
+.table-shell--kolkata .status-chip { border-color:rgba(228,195,110,.2); background:linear-gradient(180deg,rgba(228,195,110,.07),rgba(3,20,14,.16)); }
+.table-shell--kolkata .status-action { border-color:rgba(228,195,110,.18); background:rgba(228,195,110,.035); }
+.table-shell--kolkata .status-action:hover { border-color:rgba(228,195,110,.6); color:#f0cf78; }
+.kolkata-venue-chip { display:inline-flex; align-items:center; border:1px solid rgba(228,195,110,.28); border-radius:999px; background:rgba(228,195,110,.07); padding:2px 7px; color:#d9c28b; font-size:7px; font-weight:850; letter-spacing:.1em; text-transform:uppercase; }
+.board-kolkata {
+  --table-glow:#e4c36e;
+  --table-glow-rgb:228,195,110;
+  --table-accent:#6fe0b1;
+  --table-accent-rgb:111,224,177;
+  --tile-edge:#94713f;
+  --tile-edge-dark:#4d361f;
+  --premium-tile-min:clamp(38px,4.15vw,62px);
+  position:relative;
+  isolation:isolate;
+  background:
+    linear-gradient(180deg,rgba(4,22,16,.27),rgba(4,28,20,.5)),
+    radial-gradient(ellipse at 8% 22%,rgba(242,194,94,.2),transparent 28%),
+    radial-gradient(ellipse at 91% 23%,rgba(242,194,94,.18),transparent 27%),
+    radial-gradient(ellipse at 50% 76%,rgba(27,116,84,.18),transparent 40%),
+    url('/images/kolkata-royal-club.jpg') center 38% / cover no-repeat;
+  background-color:#173e32;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 0 170px rgba(1,12,8,.52);
+}
+.board-kolkata::before,
+.board-kolkata::after { content:""; position:absolute; inset:0; z-index:0; pointer-events:none; }
+.board-kolkata::before {
+  background:
+    linear-gradient(45deg,transparent 46%,rgba(228,195,110,.035) 47% 53%,transparent 54%) 0 0 / 48px 48px,
+    linear-gradient(-45deg,transparent 46%,rgba(111,224,177,.025) 47% 53%,transparent 54%) 0 0 / 48px 48px,
+    linear-gradient(90deg,transparent 49%,rgba(228,195,110,.025) 50%,transparent 51%) 0 0 / 96px 96px;
+  mix-blend-mode:screen;
+  opacity:.66;
+  animation:kolkataLampGlow 14s ease-in-out infinite alternate;
+}
+.board-kolkata::after {
+  inset:7% 4% 12%;
+  border:1px solid rgba(228,195,110,.08);
+  border-radius:42%;
+  background:radial-gradient(ellipse at center,rgba(111,224,177,.08),transparent 67%);
+  filter:blur(22px);
+}
+.board-kolkata > * { position:relative; z-index:1; }
+.board-kolkata .kolkata-atmosphere { position:absolute; inset:0; z-index:0; pointer-events:none; }
+.kolkata-atmosphere__venue,
+.kolkata-atmosphere__edition { position:absolute; z-index:1; color:rgba(255,236,190,.56); font-size:7px; font-weight:900; letter-spacing:.22em; text-transform:uppercase; text-shadow:0 2px 8px rgba(0,0,0,.5); }
+.kolkata-atmosphere__venue { top:clamp(117px,17vh,146px); left:22px; }
+.kolkata-atmosphere__edition { top:clamp(117px,17vh,146px); right:22px; }
+.kolkata-atmosphere__corner { position:absolute; width:44px; height:44px; border-top:1px solid rgba(228,195,110,.38); top:clamp(137px,19vh,164px); }
+.kolkata-atmosphere__corner::after { content:""; position:absolute; top:-4px; width:7px; height:7px; border:1px solid rgba(228,195,110,.5); transform:rotate(45deg); }
+.kolkata-atmosphere__corner--left { left:11px; border-left:1px solid rgba(228,195,110,.38); border-radius:9px 0 0; }
+.kolkata-atmosphere__corner--left::after { left:-4px; }
+.kolkata-atmosphere__corner--right { right:11px; border-right:1px solid rgba(228,195,110,.38); border-radius:0 9px 0 0; }
+.kolkata-atmosphere__corner--right::after { right:-4px; }
+.board-kolkata .opponent-panel {
+  border-color:rgba(228,195,110,.3);
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.04),transparent 32%),
+    linear-gradient(145deg,rgba(7,30,22,.94),rgba(18,66,49,.86));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.035),inset 0 -9px 18px rgba(2,19,13,.2),0 4px 0 rgba(76,50,26,.5),0 14px 30px rgba(2,15,10,.32);
+  backdrop-filter:blur(8px);
+}
+.board-kolkata .opponent-panel--active {
+  border-color:var(--table-glow);
+  box-shadow:0 0 0 1px rgba(var(--table-glow-rgb),.28),0 0 30px rgba(var(--table-accent-rgb),.13),0 12px 28px rgba(2,15,10,.32);
+}
+.board-kolkata .seat-avatar { border-color:rgba(var(--table-glow-rgb),.58); background:radial-gradient(circle at 30% 20%,#2b725b,#103f31); box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 3px 8px rgba(0,0,0,.28); color:#f4d987; }
+.board-kolkata .center-play { border:1px solid rgba(228,195,110,.34); border-radius:20px; background:linear-gradient(145deg,rgba(63,42,23,.82),rgba(24,54,40,.74)); padding:9px; box-shadow:inset 0 0 0 2px rgba(255,231,170,.04),0 14px 34px rgba(2,15,10,.25); }
+.board-kolkata .discard-river {
+  border-color:rgba(228,195,110,.24);
+  background:
+    radial-gradient(circle at 50% 40%,rgba(57,139,102,.14),transparent 42%),
+    linear-gradient(155deg,rgba(8,55,40,.94),rgba(8,67,48,.88));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.065),inset 0 0 80px rgba(1,27,18,.38),0 10px 0 rgba(44,28,16,.52),0 18px 32px rgba(2,15,10,.28);
+  backdrop-filter:blur(5px);
+}
+.board-kolkata .discard-river__header { border-bottom:1px solid rgba(228,195,110,.13); }
+.board-kolkata .discard-river__header h2 { color:#f4dfaa; }
+.board-kolkata .discard-river__status { border-color:rgba(var(--table-glow-rgb),.38); background:linear-gradient(90deg,rgba(5,29,22,.92),rgba(14,53,40,.86)); box-shadow:inset 0 1px 0 rgba(255,255,255,.035); }
+.board-kolkata .human-zone {
+  border:1px solid rgba(var(--table-glow-rgb),.34);
+  border-top:2px solid rgba(var(--table-glow-rgb),.62);
+  background:
+    linear-gradient(90deg,rgba(228,195,110,.045),transparent 22%,transparent 78%,rgba(228,195,110,.04)),
+    linear-gradient(180deg,rgba(16,73,54,.9),rgba(4,29,21,.97));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),inset 0 18px 38px rgba(42,118,87,.08),0 -7px 0 rgba(64,40,22,.46),0 -20px 42px rgba(2,15,10,.3);
+  backdrop-filter:blur(8px);
+}
+.board-kolkata .human-zone--active {
+  border-top-color:var(--table-glow);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 -2px 0 rgba(var(--table-glow-rgb),.32),0 -16px 40px rgba(var(--table-accent-rgb),.1);
+}
+.board-kolkata .action-row { background:linear-gradient(90deg,rgba(5,31,23,.18),rgba(5,31,23,.72)); }
+.board-kolkata .hand-toolbar { border-top-color:rgba(228,195,110,.18); }
+.board-kolkata .hand-toolbar b { color:#f4dfaa; }
+.board-kolkata .hand-rack { border-radius:14px 14px 0 0; background:linear-gradient(180deg,rgba(4,27,20,.08),rgba(1,18,13,.22)); }
+.board-kolkata .hand-rack-shadow { background:rgba(1,13,9,.48); }
+.board-kolkata .mahjong-tile--back { border-color:#9b7b43; background:radial-gradient(circle at 50% 45%,rgba(228,195,110,.13),transparent 36%),linear-gradient(145deg,#1c7258,#0a4b3a 62%,#05372b); box-shadow:inset 1px 1px 0 rgba(255,255,255,.18),inset -1px -1px 0 rgba(0,0,0,.3),0 2px 0 #9d7940,0 5px 8px rgba(0,0,0,.32); }
+.board-kolkata .tile-back-art { border-color:rgba(244,217,135,.74); background:linear-gradient(45deg,transparent 44%,rgba(244,217,135,.2) 45% 55%,transparent 56%) 0 0 / 8px 8px,linear-gradient(-45deg,transparent 44%,rgba(244,217,135,.12) 45% 55%,transparent 56%) 0 0 / 8px 8px; }
+.board-kolkata .tile-selected-mark,
+.board-kolkata .tile-drawn-mark { background:var(--table-glow); color:#173123; }
+.board-kolkata .compact-action { border-color:rgba(228,195,110,.23); background:rgba(228,195,110,.055); }
+.board-kolkata .hand-sort-button,
+.board-kolkata .hand-sort-menu>summary { border-color:rgba(228,195,110,.26); background:rgba(228,195,110,.07); }
+
+@keyframes kolkataLampGlow {
+  from { opacity:.48; filter:saturate(.94) brightness(.96); }
+  to { opacity:.76; filter:saturate(1.08) brightness(1.04); }
+}
+
 /* Mumbai Monsoon: a tactile, rain-washed table treatment scoped to this theme. */
 .board-mumbai {
   --table-glow:#69dce8;
   --table-glow-rgb:105,220,232;
   --table-accent:#f3bd4f;
   --table-accent-rgb:243,189,79;
+  --tile-edge:#1b6170;
+  --tile-edge-dark:#0a3540;
   --premium-tile-min:clamp(38px,4.15vw,62px);
   position:relative;
   isolation:isolate;
@@ -267,6 +391,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
   --table-glow-rgb:255,143,187;
   --table-accent:#efb14d;
   --table-accent-rgb:239,177,77;
+  --tile-edge:#914c67;
+  --tile-edge-dark:#54283d;
   --premium-tile-min:clamp(38px,4.15vw,62px);
   position:relative;
   isolation:isolate;
@@ -364,9 +490,9 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 
 /* Ivory faces, wooden depth and spring-like input feedback. */
 .board-city-premium .mahjong-tile:not(.mahjong-tile--back) {
-  border:1px solid #c49743;
-  background:linear-gradient(145deg,#fffef7 0%,#fff8e7 64%,#e7d9bd 100%);
-  box-shadow:inset 1px 1px 0 rgba(255,255,255,.96),inset -1px -1px 0 rgba(111,78,30,.15),0 3px 0 #b88a46,0 6px 0 #6d4926,0 11px 19px rgba(1,8,18,.38);
+  border:1px solid #cdbf9f;
+  background:radial-gradient(circle at 24% 17%,rgba(255,255,255,.98),transparent 25%),linear-gradient(150deg,#fffef8 0%,#fbf3df 60%,#dfd0ae 100%);
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,.98),inset -1px -1px 0 rgba(111,78,30,.16),0 2px 0 #d7cbae,0 5px 0 var(--tile-edge),0 8px 0 var(--tile-edge-dark),0 13px 20px rgba(1,8,18,.4);
 }
 .board-city-premium .mahjong-tile--hand { border-radius:clamp(7px,.65vw,11px); }
 .board-city-premium .tile-art { width:clamp(76%,84%,88%); height:clamp(76%,84%,88%); }
@@ -379,12 +505,12 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
   z-index:8;
   border-color:var(--table-accent);
   transform:translateY(-10px) scale(1.025);
-  box-shadow:inset 1px 1px 0 rgba(255,255,255,.96),0 3px 0 #b88a46,0 6px 0 #6d4926,0 0 0 2px rgba(var(--table-accent-rgb),.36),0 0 16px rgba(var(--table-glow-rgb),.52),0 0 34px rgba(var(--table-glow-rgb),.28),0 18px 25px rgba(1,8,18,.45);
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,.98),0 2px 0 #d7cbae,0 5px 0 var(--tile-edge),0 8px 0 var(--tile-edge-dark),0 0 0 2px rgba(var(--table-accent-rgb),.32),0 0 15px rgba(var(--table-glow-rgb),.46),0 17px 25px rgba(1,8,18,.46);
 }
 .board-city-premium .mahjong-tile--interactive:active:not(:disabled) {
   transform:translateY(-2px) scale(.975);
   transition-duration:70ms;
-  box-shadow:inset 0 2px 3px rgba(80,54,20,.18),0 2px 0 #8c612e,0 5px 10px rgba(1,8,18,.38);
+  box-shadow:inset 0 2px 3px rgba(80,54,20,.18),0 2px 0 var(--tile-edge),0 4px 0 var(--tile-edge-dark),0 7px 11px rgba(1,8,18,.4);
 }
 .board-city-premium .mahjong-tile--selected,
 .board-city-premium .mahjong-tile--selected:hover:not(:disabled) {
@@ -393,7 +519,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
   outline:3px solid var(--table-accent);
   outline-offset:3px;
   transform:translateY(-12px) scale(1.035)!important;
-  box-shadow:inset 1px 1px 0 rgba(255,255,255,.96),0 3px 0 #b88a46,0 6px 0 #6d4926,0 0 0 2px rgba(var(--table-glow-rgb),.78),0 0 20px rgba(var(--table-glow-rgb),.56),0 0 38px rgba(var(--table-accent-rgb),.24),0 20px 28px rgba(1,8,18,.48);
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,.98),0 2px 0 #d7cbae,0 5px 0 var(--tile-edge),0 8px 0 var(--tile-edge-dark),0 0 0 2px rgba(var(--table-glow-rgb),.7),0 0 18px rgba(var(--table-glow-rgb),.5),0 20px 28px rgba(1,8,18,.5);
 }
 .board-city-premium .mahjong-tile:focus-visible { outline-color:var(--table-glow); box-shadow:0 0 0 3px rgba(var(--table-accent-rgb),.72),0 12px 24px rgba(1,8,18,.4); }
 .board-city-premium .mahjong-tile--drawn:not(.mahjong-tile--selected) { border-color:var(--table-accent); outline-color:rgba(var(--table-accent-rgb),.86); }
@@ -414,6 +540,11 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
   .board-city-premium .mahjong-tile--interactive:hover:not(:disabled) { transform:translateY(-6px) scale(1.018); }
   .board-city-premium .mahjong-tile--selected,
   .board-city-premium .mahjong-tile--selected:hover:not(:disabled) { transform:translateY(-8px) scale(1.025)!important; }
+  .kolkata-venue-chip,
+  .kolkata-atmosphere__venue,
+  .kolkata-atmosphere__edition,
+  .kolkata-atmosphere__corner { display:none; }
+  .board-kolkata .center-play { padding:5px; }
 }
 @media (max-width:390px) {
   .board-city-premium { --premium-tile-min:34px; grid-template-rows:88px minmax(112px,1fr) clamp(285px,45vh,350px); }
