@@ -675,14 +675,251 @@
   box-shadow: inset 0 0 0 2px rgb(229 199 126 / 45%), inset 0 0 60px rgb(0 0 0 / 18%), 0 12px 0 #3c2a1d, 0 46px 80px rgb(0 0 0 / 52%);
   transform: perspective(760px) rotateX(57deg) translateY(9%);
 }
+.mj-theme .is-kolkata .mj-pres-room-showcase__shade {
+  background:
+    linear-gradient(180deg, rgb(3 14 9 / 2%), rgb(2 11 8 / 28%)),
+    radial-gradient(ellipse at 50% 47%, transparent 30%, rgb(2 10 7 / 20%) 100%);
+}
+.mj-theme .is-kolkata .mj-pres-room-showcase__table {
+  width: min(60%, 450px);
+  aspect-ratio: 1.5 / 1;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  transform: perspective(760px) rotateX(55deg) translateY(14%);
+}
+.mj-theme .is-kolkata .mj-pres-room-table__inlay { display: none; }
+.mj-theme .is-kolkata .mj-pres-room-table__tiles {
+  gap: clamp(8px, 1vw, 13px);
+  transform: rotateX(-5deg) translateY(28%);
+}
+.mj-theme .is-kolkata .mj-pres-room-table__tiles .mahjong-tile {
+  border-color: #c8b98f;
+  box-shadow:
+    inset 1px 1px 0 rgb(255 255 255 / 98%),
+    inset -1px -1px 0 rgb(90 58 18 / 16%),
+    0 3px 0 #d8cba8,
+    0 7px 0 #75603d,
+    0 15px 24px rgb(0 0 0 / 48%),
+    0 0 22px rgb(229 199 126 / 9%);
+}
 .mj-theme .is-jaipur .mj-pres-room-showcase__table { border-color: #985d50; background: linear-gradient(145deg, #915060, #592f42); box-shadow: inset 0 0 0 2px rgb(255 201 216 / 35%), inset 0 0 60px rgb(0 0 0 / 18%), 0 12px 0 #4f2a2f, 0 46px 80px rgb(0 0 0 / 52%); }
-.mj-theme .is-mumbai .mj-pres-room-showcase__table { border-color: #6c604a; background: linear-gradient(145deg, #126778, #093e4b); box-shadow: inset 0 0 0 2px rgb(105 220 232 / 34%), inset 0 0 60px rgb(0 0 0 / 18%), 0 12px 0 #323339, 0 46px 80px rgb(0 0 0 / 52%); }
+.mj-theme .is-mumbai .mj-pres-room-showcase__shade {
+  background:
+    linear-gradient(180deg, rgb(7 28 34 / 5%), rgb(3 17 22 / 42%)),
+    radial-gradient(ellipse at 50% 42%, transparent 20%, rgb(3 14 18 / 34%) 100%);
+}
+.mj-theme .is-mumbai .mj-pres-room-showcase__art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(112deg, transparent 26%, rgb(187 225 232 / 8%) 42%, transparent 52%),
+    repeating-linear-gradient(103deg, transparent 0 23px, rgb(216 238 242 / 5%) 24px, transparent 25px 39px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.mj-theme .is-mumbai .mj-pres-room-showcase__table {
+  overflow: hidden;
+  border-color: #332f2a;
+  border-radius: 22px;
+  background:
+    linear-gradient(118deg, transparent 0 42%, rgb(188 228 234 / 11%) 48%, transparent 55%),
+    repeating-linear-gradient(101deg, rgb(255 255 255 / 2%) 0 1px, transparent 1px 18px),
+    radial-gradient(ellipse at 50% 32%, rgb(35 125 137 / 38%), transparent 55%),
+    linear-gradient(155deg, #0d5662 0%, #073a45 58%, #052a33 100%);
+  box-shadow:
+    inset 0 0 0 2px rgb(206 181 116 / 62%),
+    inset 0 0 0 7px rgb(7 28 32 / 58%),
+    inset 0 0 58px rgb(0 0 0 / 28%),
+    0 0 0 2px #78674b,
+    0 12px 0 #171c1d,
+    0 18px 0 #080c0d,
+    0 50px 90px rgb(0 0 0 / 58%),
+    0 0 54px rgb(72 185 199 / 14%);
+}
+.mj-theme .is-mumbai .mj-pres-room-showcase__table::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgb(218 193 128 / 28%);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 11px 11px, #ddc57f 0 2px, transparent 2.5px),
+    radial-gradient(circle at calc(100% - 11px) 11px, #ddc57f 0 2px, transparent 2.5px),
+    radial-gradient(circle at 11px calc(100% - 11px), #ddc57f 0 2px, transparent 2.5px),
+    radial-gradient(circle at calc(100% - 11px) calc(100% - 11px), #ddc57f 0 2px, transparent 2.5px);
+  box-shadow: inset 0 0 28px rgb(4 17 21 / 36%);
+  pointer-events: none;
+}
+.mj-theme .is-mumbai .mj-pres-room-showcase__table::after {
+  content: 'MUMBAI MONSOON · CLUB TABLE';
+  position: absolute;
+  right: 18%;
+  bottom: 7%;
+  left: 18%;
+  border: 1px solid rgb(218 193 128 / 40%);
+  border-radius: 999px;
+  background: rgb(4 28 34 / 60%);
+  padding: 5px 10px;
+  color: rgb(239 220 161 / 82%);
+  font-size: clamp(5px, .55vw, 7px);
+  font-weight: 900;
+  letter-spacing: .19em;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+}
 .mj-theme .is-kerala .mj-pres-room-showcase__table { border-color: #715036; background: linear-gradient(145deg, #366944, #1c4934); }
 .mj-theme .is-chennai .mj-pres-room-showcase__table { border-color: #8a5739; background: linear-gradient(145deg, #785240, #3f4038); }
 .mj-theme .mj-pres-room-table__inlay { position: absolute; inset: 9%; border: 1px solid rgb(229 199 126 / 45%); border-radius: 50%; box-shadow: 0 0 0 9px rgb(229 199 126 / 6%); }
+.mj-theme .is-mumbai .mj-pres-room-table__inlay {
+  inset: 13% 9% 16%;
+  border-color: rgb(216 195 134 / 48%);
+  border-radius: 15px;
+  background:
+    linear-gradient(90deg, transparent 49.7%, rgb(190 221 226 / 14%) 50%, transparent 50.3%),
+    linear-gradient(transparent 49.7%, rgb(190 221 226 / 10%) 50%, transparent 50.3%);
+  box-shadow:
+    0 0 0 5px rgb(218 193 128 / 5%),
+    inset 0 0 22px rgb(123 210 220 / 6%);
+}
+.mj-theme .is-mumbai .mj-pres-room-table__inlay::before,
+.mj-theme .is-mumbai .mj-pres-room-table__inlay::after {
+  content: '';
+  position: absolute;
+  top: 13%;
+  bottom: 13%;
+  width: 22%;
+  border: 1px solid rgb(216 195 134 / 28%);
+  border-block: 0;
+  border-radius: 50%;
+}
+.mj-theme .is-mumbai .mj-pres-room-table__inlay::before { left: 8%; transform: rotate(-8deg); }
+.mj-theme .is-mumbai .mj-pres-room-table__inlay::after { right: 8%; transform: rotate(8deg); }
 .mj-theme .mj-pres-room-table__tiles { position: relative; z-index: 2; display: flex; align-items: flex-end; gap: clamp(7px, 1vw, 12px); transform: rotateX(-4deg) translateY(20%); }
 .mj-theme .mj-pres-room-table__tiles .mahjong-tile { width: clamp(42px, 4vw, 57px); height: auto; aspect-ratio: 3 / 4; border-color: #cdbf9f; background: radial-gradient(circle at 24% 17%, rgb(255 255 255 / 98%), transparent 25%), linear-gradient(150deg, #fffef8, #fbf3df 60%, #dfd0ae); box-shadow: inset 1px 1px 0 white, 0 3px 0 #d7cbae, 0 7px 0 #7c6a45, 0 12px 20px rgb(0 0 0 / 45%); }
 .mj-theme .mj-pres-room-table__tiles .tile-art { width: 84%; height: 84%; }
+
+/* City auras: the room photography becomes the table environment and the
+   authentic Mahjong tiles float above it. Each city changes only the light,
+   edge material, and atmosphere around the same readable tile faces. */
+.mj-theme .mj-pres-room-showcase.is-kolkata {
+  --room-accent: rgb(229 199 126);
+  --room-accent-soft: rgb(229 199 126 / 24%);
+  --room-glow: rgb(229 199 126 / 30%);
+  --room-label: 'KOLKATA ROYAL';
+}
+.mj-theme .mj-pres-room-showcase.is-jaipur {
+  --room-accent: rgb(255 174 202);
+  --room-accent-soft: rgb(255 153 193 / 24%);
+  --room-glow: rgb(255 121 176 / 36%);
+  --room-label: 'JAIPUR COURTYARD';
+}
+.mj-theme .mj-pres-room-showcase.is-mumbai {
+  --room-accent: rgb(135 224 236);
+  --room-accent-soft: rgb(98 206 224 / 22%);
+  --room-glow: rgb(75 203 225 / 36%);
+  --room-label: 'MUMBAI MONSOON';
+}
+.mj-theme .mj-pres-room-showcase.is-kerala {
+  --room-accent: rgb(142 218 151);
+  --room-accent-soft: rgb(94 190 116 / 22%);
+  --room-glow: rgb(70 190 109 / 30%);
+  --room-label: 'KERALA HOUSE';
+}
+.mj-theme .mj-pres-room-showcase.is-chennai {
+  --room-accent: rgb(246 185 104);
+  --room-accent-soft: rgb(231 139 75 / 24%);
+  --room-glow: rgb(246 151 78 / 34%);
+  --room-label: 'CHENNAI CLUB';
+}
+.mj-theme .mj-pres-room-showcase .mj-pres-room-showcase__table {
+  display: grid;
+  width: min(72%, 540px);
+  aspect-ratio: 2.05 / 1;
+  overflow: visible;
+  place-items: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  transform: translateY(8%);
+  isolation: isolate;
+}
+.mj-theme .mj-pres-room-showcase .mj-pres-room-showcase__table::before {
+  content: '';
+  position: absolute;
+  inset: 8% 1% 13%;
+  z-index: -1;
+  border: 1px solid var(--room-accent-soft);
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at center, rgb(3 15 11 / 42%) 0%, rgb(3 15 11 / 25%) 42%, transparent 72%);
+  box-shadow:
+    inset 0 0 34px var(--room-accent-soft),
+    0 0 34px var(--room-glow),
+    0 24px 42px rgb(0 0 0 / 34%);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+.mj-theme .mj-pres-room-showcase .mj-pres-room-showcase__table::after {
+  content: var(--room-label);
+  position: absolute;
+  right: 25%;
+  bottom: 2%;
+  left: 25%;
+  border: 1px solid var(--room-accent-soft);
+  border-radius: 999px;
+  background: rgb(3 15 11 / 72%);
+  padding: 5px 10px;
+  color: var(--room-accent);
+  font-size: clamp(6px, .58vw, 8px);
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-align: center;
+  text-shadow: 0 1px 8px rgb(0 0 0 / 55%);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.mj-theme .mj-pres-room-showcase .mj-pres-room-table__inlay {
+  display: block;
+  inset: 17% 8% 23%;
+  border-color: var(--room-accent-soft);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, transparent 56%, var(--room-accent-soft) 100%);
+  box-shadow: 0 0 0 6px rgb(255 255 255 / 2%);
+}
+.mj-theme .mj-pres-room-showcase .mj-pres-room-table__inlay::before,
+.mj-theme .mj-pres-room-showcase .mj-pres-room-table__inlay::after { content: none; }
+.mj-theme .mj-pres-room-showcase .mj-pres-room-table__tiles {
+  gap: clamp(8px, 1vw, 13px);
+  transform: translateY(-2%);
+  animation: roomTilesArrive .42s ease-out both;
+}
+.mj-theme .mj-pres-room-showcase .mj-pres-room-table__tiles .mahjong-tile {
+  border-color: color-mix(in srgb, var(--room-accent) 42%, #c9b991);
+  box-shadow:
+    inset 1px 1px 0 rgb(255 255 255 / 98%),
+    inset -1px -1px 0 rgb(82 55 20 / 16%),
+    0 3px 0 #d8cbaa,
+    0 7px 0 #776440,
+    0 15px 24px rgb(0 0 0 / 52%),
+    0 0 24px var(--room-glow);
+}
+.mj-theme .is-jaipur .mj-pres-room-showcase__shade { background: linear-gradient(180deg, rgb(66 24 42 / 4%), rgb(43 15 28 / 34%)), radial-gradient(ellipse at center, transparent 28%, rgb(48 16 30 / 25%)); }
+.mj-theme .is-kerala .mj-pres-room-showcase__shade { background: linear-gradient(180deg, rgb(8 34 21 / 2%), rgb(5 28 17 / 34%)), radial-gradient(ellipse at center, transparent 28%, rgb(4 30 17 / 24%)); }
+.mj-theme .is-chennai .mj-pres-room-showcase__shade { background: linear-gradient(180deg, rgb(55 28 16 / 2%), rgb(46 20 10 / 32%)), radial-gradient(ellipse at center, transparent 28%, rgb(52 24 12 / 24%)); }
+
+@keyframes roomTilesArrive {
+  from { opacity: 0; transform: translateY(10%) scale(.96); }
+  to { opacity: 1; transform: translateY(-2%) scale(1); }
+}
 .mj-theme .mj-pres-room-showcase__live { position: absolute; top: 22px; left: 22px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgb(255 255 255 / 20%); border-radius: 999px; background: rgb(3 13 9 / 78%); padding: 9px 12px; color: #d9eee4; font-size: 9px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
 .mj-theme .mj-pres-room-showcase__live i { width: 7px; height: 7px; border-radius: 50%; background: #71e9b4; box-shadow: 0 0 0 4px rgb(113 233 180 / 14%); }
 .mj-theme .mj-pres-room-showcase__copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(30px, 5vw, 62px); }
@@ -893,4 +1130,6 @@
   .mj-theme .mj-pres-play-control,
   .mj-theme .mj-pres-room-tabs button,
   .mj-theme .mj-pres-room-showcase__art { transition: none; }
+  .mj-theme .mj-pres-room-table__tiles { animation: none; }
 }
+

@@ -198,7 +198,9 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 }
 @media (max-height:760px) and (min-width:768px){.game-board,.lan-game-board{grid-template-rows:88px minmax(130px,1fr) 260px}.discard-river__viewport{max-height:25vh}.hand-rack{padding-top:16px}}
 
-/* Kolkata Royal: a measured heritage-club table in bottle green, teak and brass. */
+/* Kolkata Royal: polished bottle-green lacquer, recessed felt and brass.
+   The environment is intentionally abstract so the table feels atmospheric
+   without placing gameplay over a visually noisy photograph. */
 .table-shell--kolkata .game-chrome {
   position:relative;
   border-bottom-color:rgba(220,184,100,.42);
@@ -216,42 +218,79 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .board-kolkata {
   --table-glow:#e4c36e;
   --table-glow-rgb:228,195,110;
-  --table-accent:#6fe0b1;
-  --table-accent-rgb:111,224,177;
+  --table-accent:#71e9b4;
+  --table-accent-rgb:113,233,180;
   --tile-edge:#94713f;
   --tile-edge-dark:#4d361f;
   --premium-tile-min:clamp(38px,4.15vw,62px);
   position:relative;
   isolation:isolate;
   background:
-    linear-gradient(180deg,rgba(4,22,16,.27),rgba(4,28,20,.5)),
-    radial-gradient(ellipse at 8% 22%,rgba(242,194,94,.2),transparent 28%),
-    radial-gradient(ellipse at 91% 23%,rgba(242,194,94,.18),transparent 27%),
-    radial-gradient(ellipse at 50% 76%,rgba(27,116,84,.18),transparent 40%),
-    url('/images/kolkata-royal-club.jpg') center 38% / cover no-repeat;
-  background-color:#173e32;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 0 170px rgba(1,12,8,.52);
+    radial-gradient(ellipse at 50% -8%,rgba(113,233,180,.16),transparent 38%),
+    radial-gradient(circle at 7% 42%,rgba(228,195,110,.11),transparent 22%),
+    radial-gradient(circle at 93% 42%,rgba(228,195,110,.09),transparent 22%),
+    radial-gradient(ellipse at 50% 72%,rgba(21,112,78,.2),transparent 46%),
+    linear-gradient(150deg,#020806 0%,#09271c 42%,#061811 72%,#020806 100%);
+  background-color:#061811;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    inset 0 -90px 120px rgba(0,0,0,.3),
+    inset 0 0 170px rgba(0,8,5,.54);
 }
 .board-kolkata::before,
 .board-kolkata::after { content:""; position:absolute; inset:0; z-index:0; pointer-events:none; }
 .board-kolkata::before {
   background:
-    linear-gradient(45deg,transparent 46%,rgba(228,195,110,.035) 47% 53%,transparent 54%) 0 0 / 48px 48px,
-    linear-gradient(-45deg,transparent 46%,rgba(111,224,177,.025) 47% 53%,transparent 54%) 0 0 / 48px 48px,
-    linear-gradient(90deg,transparent 49%,rgba(228,195,110,.025) 50%,transparent 51%) 0 0 / 96px 96px;
+    radial-gradient(circle at 6% 53%,rgba(113,233,180,.82) 0 1.5px,transparent 2.5px),
+    radial-gradient(circle at 94% 29%,rgba(113,233,180,.72) 0 1.5px,transparent 2.5px),
+    radial-gradient(circle at 88% 37%,rgba(228,195,110,.68) 0 1px,transparent 2px),
+    linear-gradient(45deg,transparent 46%,rgba(228,195,110,.022) 47% 53%,transparent 54%) 0 0 / 72px 72px,
+    linear-gradient(-45deg,transparent 46%,rgba(113,233,180,.018) 47% 53%,transparent 54%) 0 0 / 72px 72px,
+    linear-gradient(90deg,transparent 49.7%,rgba(228,195,110,.03) 50%,transparent 50.3%) 0 0 / 144px 144px;
   mix-blend-mode:screen;
-  opacity:.66;
+  opacity:.62;
   animation:kolkataLampGlow 14s ease-in-out infinite alternate;
 }
 .board-kolkata::after {
-  inset:7% 4% 12%;
-  border:1px solid rgba(228,195,110,.08);
-  border-radius:42%;
-  background:radial-gradient(ellipse at center,rgba(111,224,177,.08),transparent 67%);
-  filter:blur(22px);
+  inset:17% 4% 23%;
+  border:1px solid rgba(228,195,110,.12);
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 50% 55%,rgba(35,145,99,.12),rgba(3,18,13,.16) 48%,transparent 73%);
+  box-shadow:
+    inset 0 0 58px rgba(113,233,180,.07),
+    0 0 0 12px rgba(228,195,110,.015),
+    0 26px 70px rgba(0,0,0,.2);
 }
 .board-kolkata > * { position:relative; z-index:1; }
 .board-kolkata .kolkata-atmosphere { position:absolute; inset:0; z-index:0; pointer-events:none; }
+.board-kolkata .kolkata-atmosphere::before {
+  content:"";
+  position:absolute;
+  top:2%;
+  right:12%;
+  bottom:15%;
+  left:12%;
+  border:1px solid rgba(228,195,110,.12);
+  border-bottom:0;
+  border-radius:50% 50% 0 0 / 72% 72% 0 0;
+  background:
+    radial-gradient(ellipse at 50% 8%,rgba(113,233,180,.1),transparent 35%),
+    linear-gradient(90deg,transparent 49.92%,rgba(228,195,110,.09) 50%,transparent 50.08%);
+  box-shadow:
+    0 0 0 14px rgba(228,195,110,.018),
+    inset 0 0 80px rgba(0,200,121,.035);
+}
+.board-kolkata .kolkata-atmosphere::after {
+  content:"";
+  position:absolute;
+  top:47%;
+  right:7%;
+  left:7%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(228,195,110,.12) 18%,rgba(113,233,180,.18) 50%,rgba(228,195,110,.12) 82%,transparent);
+  box-shadow:0 0 22px rgba(113,233,180,.12);
+}
 .kolkata-atmosphere__venue,
 .kolkata-atmosphere__edition { position:absolute; z-index:1; color:rgba(255,236,190,.56); font-size:7px; font-weight:900; letter-spacing:.22em; text-transform:uppercase; text-shadow:0 2px 8px rgba(0,0,0,.5); }
 .kolkata-atmosphere__venue { top:clamp(117px,17vh,146px); left:22px; }
@@ -263,26 +302,45 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .kolkata-atmosphere__corner--right { right:11px; border-right:1px solid rgba(228,195,110,.38); border-radius:0 9px 0 0; }
 .kolkata-atmosphere__corner--right::after { right:-4px; }
 .board-kolkata .opponent-panel {
-  border-color:rgba(228,195,110,.3);
+  border-color:rgba(228,195,110,.28);
   background:
-    linear-gradient(135deg,rgba(255,255,255,.04),transparent 32%),
-    linear-gradient(145deg,rgba(7,30,22,.94),rgba(18,66,49,.86));
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.035),inset 0 -9px 18px rgba(2,19,13,.2),0 4px 0 rgba(76,50,26,.5),0 14px 30px rgba(2,15,10,.32);
-  backdrop-filter:blur(8px);
+    linear-gradient(135deg,rgba(255,255,255,.045),transparent 30%),
+    radial-gradient(circle at 82% 10%,rgba(113,233,180,.065),transparent 34%),
+    linear-gradient(155deg,rgba(8,37,27,.97),rgba(10,55,39,.95));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    inset 0 -18px 26px rgba(1,15,10,.2),
+    0 3px 0 rgba(74,50,28,.56),
+    0 15px 30px rgba(0,10,6,.3);
 }
 .board-kolkata .opponent-panel--active {
   border-color:var(--table-glow);
   box-shadow:0 0 0 1px rgba(var(--table-glow-rgb),.28),0 0 30px rgba(var(--table-accent-rgb),.13),0 12px 28px rgba(2,15,10,.32);
 }
 .board-kolkata .seat-avatar { border-color:rgba(var(--table-glow-rgb),.58); background:radial-gradient(circle at 30% 20%,#2b725b,#103f31); box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 3px 8px rgba(0,0,0,.28); color:#f4d987; }
-.board-kolkata .center-play { border:1px solid rgba(228,195,110,.34); border-radius:20px; background:linear-gradient(145deg,rgba(63,42,23,.82),rgba(24,54,40,.74)); padding:9px; box-shadow:inset 0 0 0 2px rgba(255,231,170,.04),0 14px 34px rgba(2,15,10,.25); }
-.board-kolkata .discard-river {
-  border-color:rgba(228,195,110,.24);
+.board-kolkata .center-play {
+  border:1px solid rgba(228,195,110,.34);
+  border-radius:20px;
   background:
-    radial-gradient(circle at 50% 40%,rgba(57,139,102,.14),transparent 42%),
-    linear-gradient(155deg,rgba(8,55,40,.94),rgba(8,67,48,.88));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.065),inset 0 0 80px rgba(1,27,18,.38),0 10px 0 rgba(44,28,16,.52),0 18px 32px rgba(2,15,10,.28);
-  backdrop-filter:blur(5px);
+    linear-gradient(110deg,rgba(228,195,110,.09),transparent 18% 82%,rgba(228,195,110,.07)),
+    linear-gradient(180deg,rgba(78,53,31,.7),rgba(33,24,16,.72));
+  padding:8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,238,196,.13),
+    inset 0 0 0 2px rgba(18,8,3,.25),
+    0 12px 30px rgba(0,9,6,.28);
+}
+.board-kolkata .discard-river {
+  border-color:rgba(228,195,110,.22);
+  background:
+    linear-gradient(116deg,transparent 34%,rgba(255,255,255,.018) 48%,transparent 62%),
+    radial-gradient(ellipse at 50% 42%,rgba(59,158,112,.13),transparent 46%),
+    linear-gradient(155deg,rgba(7,48,35,.98),rgba(6,62,43,.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    inset 0 0 92px rgba(0,20,13,.4),
+    0 5px 0 rgba(42,28,17,.48),
+    0 16px 30px rgba(0,10,6,.25);
 }
 .board-kolkata .discard-river__header { border-bottom:1px solid rgba(228,195,110,.13); }
 .board-kolkata .discard-river__header h2 { color:#f4dfaa; }
@@ -291,10 +349,14 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
   border:1px solid rgba(var(--table-glow-rgb),.34);
   border-top:2px solid rgba(var(--table-glow-rgb),.62);
   background:
-    linear-gradient(90deg,rgba(228,195,110,.045),transparent 22%,transparent 78%,rgba(228,195,110,.04)),
-    linear-gradient(180deg,rgba(16,73,54,.9),rgba(4,29,21,.97));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),inset 0 18px 38px rgba(42,118,87,.08),0 -7px 0 rgba(64,40,22,.46),0 -20px 42px rgba(2,15,10,.3);
-  backdrop-filter:blur(8px);
+    linear-gradient(105deg,rgba(228,195,110,.05),transparent 19% 81%,rgba(228,195,110,.045)),
+    radial-gradient(ellipse at 50% 0%,rgba(113,233,180,.07),transparent 48%),
+    linear-gradient(180deg,rgba(11,62,45,.98),rgba(3,27,19,.99));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    inset 0 20px 42px rgba(46,137,96,.055),
+    0 -4px 0 rgba(70,47,27,.5),
+    0 -18px 38px rgba(0,10,6,.28);
 }
 .board-kolkata .human-zone--active {
   border-top-color:var(--table-glow);
@@ -303,7 +365,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .board-kolkata .action-row { background:linear-gradient(90deg,rgba(5,31,23,.18),rgba(5,31,23,.72)); }
 .board-kolkata .hand-toolbar { border-top-color:rgba(228,195,110,.18); }
 .board-kolkata .hand-toolbar b { color:#f4dfaa; }
-.board-kolkata .hand-rack { border-radius:14px 14px 0 0; background:linear-gradient(180deg,rgba(4,27,20,.08),rgba(1,18,13,.22)); }
+.board-kolkata .hand-rack { border-radius:14px 14px 0 0; background:radial-gradient(ellipse at 50% 100%,rgba(113,233,180,.055),transparent 55%),linear-gradient(180deg,rgba(4,27,20,.08),rgba(1,18,13,.24)); }
 .board-kolkata .hand-rack-shadow { background:rgba(1,13,9,.48); }
 .board-kolkata .mahjong-tile--back { border-color:#9b7b43; background:radial-gradient(circle at 50% 45%,rgba(228,195,110,.13),transparent 36%),linear-gradient(145deg,#1c7258,#0a4b3a 62%,#05372b); box-shadow:inset 1px 1px 0 rgba(255,255,255,.18),inset -1px -1px 0 rgba(0,0,0,.3),0 2px 0 #9d7940,0 5px 8px rgba(0,0,0,.32); }
 .board-kolkata .tile-back-art { border-color:rgba(244,217,135,.74); background:linear-gradient(45deg,transparent 44%,rgba(244,217,135,.2) 45% 55%,transparent 56%) 0 0 / 8px 8px,linear-gradient(-45deg,transparent 44%,rgba(244,217,135,.12) 45% 55%,transparent 56%) 0 0 / 8px 8px; }
@@ -314,8 +376,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .board-kolkata .hand-sort-menu>summary { border-color:rgba(228,195,110,.26); background:rgba(228,195,110,.07); }
 
 @keyframes kolkataLampGlow {
-  from { opacity:.48; filter:saturate(.94) brightness(.96); }
-  to { opacity:.76; filter:saturate(1.08) brightness(1.04); }
+  from { opacity:.48; }
+  to { opacity:.72; }
 }
 
 /* Mumbai Monsoon: a tactile, rain-washed table treatment scoped to this theme. */
@@ -555,3 +617,4 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
